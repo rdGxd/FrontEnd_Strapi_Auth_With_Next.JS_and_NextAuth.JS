@@ -1,4 +1,4 @@
-import { Meta, Story, StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { AlternateEmail } from "@styled-icons/material-outlined";
 import { TextInput, TextInputProps } from ".";
 
@@ -42,7 +42,7 @@ export default {
   },
 } as Meta<TextInputProps>;
 
-export const Template: Story<TextInputProps> = (args) => {
+export const Template: StoryFn<TextInputProps> = (args) => {
   return (
     <div>
       <TextInput {...args} />
@@ -50,7 +50,7 @@ export const Template: Story<TextInputProps> = (args) => {
   );
 };
 
-export const OnError: Story<TextInputProps> = (args) => {
+export const OnError: StoryFn<TextInputProps> = (args) => {
   return (
     <div>
       <TextInput {...args} />
@@ -64,7 +64,7 @@ OnError.args = {
   icon: <AlternateEmail />,
 };
 
-export const WithText: Story<TextInputProps> = (args) => {
+export const WithText: StoryFn<TextInputProps> = (args) => {
   return (
     <div>
       <TextInput {...args} />
@@ -76,7 +76,7 @@ WithText.args = {
   value: "Something you typed",
 };
 
-export const WithIcon: Story<TextInputProps> = (args) => {
+export const WithIcon: StoryFn<TextInputProps> = (args) => {
   return (
     <div>
       <TextInput {...args} />
@@ -89,7 +89,7 @@ WithIcon.args = {
   icon: <AlternateEmail />,
 };
 
-export const Disabled: Story<TextInputProps> = (args) => {
+export const Disabled: StoryFn<TextInputProps> = (args) => {
   return (
     <div>
       <TextInput {...args} />

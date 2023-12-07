@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import * as Styled from "./styles";
 
 export type WrapperProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export function Wrapper({ children }: WrapperProps) {
