@@ -1,7 +1,5 @@
-import { Heading } from 'components/Heading';
-
 function Home() {
-  return <Heading>Example</Heading>;
+  return <h1>Oi</h1>;
 }
 
 export default Home;
