@@ -1,7 +1,7 @@
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 const config = {
   core: {
-    builder: '@storybook/builder-webpack5',
+    // builder: '@storybook/builder-webpack5',
     disableTelemetry: true,
   },
   stories: [
