@@ -1,10 +1,13 @@
 import { GetServerSideProps } from "next";
+import { useSession } from "next-auth/react";
 
 export default function Index() {
+  const { data: session, status } = useSession();
+
   return (
     <>
-      <h1>Olá mundo</h1>
-      <span>Oi</span>
+      <pre>{session && JSON.stringify(session)}</pre>
+      <pre>{status}</pre>
     </>
   );
 }
