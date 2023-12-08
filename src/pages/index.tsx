@@ -6,7 +6,7 @@ export default function Index() {
 
   return (
     <>
-      <pre>{session && JSON.stringify(session)}</pre>
+      <pre>{session && JSON.stringify(session, null, 2)}</pre>
       <pre>{status}</pre>
     </>
   );
