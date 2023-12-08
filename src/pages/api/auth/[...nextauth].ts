@@ -4,13 +4,10 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export default NextAuth({
-  jwt: {
-    // signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
-  },
   secret: process.env.NEXT_AUTH_SECRET,
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60,
+    maxAge: 7 * 24 * 60 * 60,
   },
   providers: [
     CredentialsProvider({
@@ -48,10 +45,10 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    jwt: async ({ token, user, account }) => {
-      console.log(user);
+    async jwt({ token, user }) {
       const isSignIn = !!user;
       const actualDateInSeconds = Math.floor(Date.now() / 1000);
+      // Tem que ser a mesma expiração do Strapi JWT
       const tokenExpirationInSeconds = Math.floor(7 * 24 * 60 * 60);
 
       if (isSignIn) {
@@ -73,10 +70,31 @@ export default NextAuth({
         if (actualDateInSeconds > Number(token.expiration)) {
           return Promise.resolve({});
         }
-        console.log("USUARIO LOGADO:", token);
       }
 
       return Promise.resolve(token);
+    },
+    async session({ session, token }) {
+      if (
+        !token.jwt ||
+        !token.id ||
+        !token.expiration ||
+        !token.email ||
+        !token.name
+      ) {
+        return null;
+      }
+
+      session.acessToken = token.jwt;
+
+      session.user = {
+        id: token.id,
+        name: token.name,
+        email: token.email,
+      };
+      console.log(session.user);
+
+      return { ...session };
     },
   },
 });
