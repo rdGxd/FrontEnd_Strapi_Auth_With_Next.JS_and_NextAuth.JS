@@ -5,26 +5,26 @@ const config = {
     disableTelemetry: true,
   },
   stories: [
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../src/**/stories.@(js|jsx|mjs|ts|tsx)',
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../src/**/stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-onboarding',
-    '@storybook/addon-interactions',
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-onboarding",
+    "@storybook/addon-interactions",
   ],
-  staticDirs: ['../public'],
+  staticDirs: ["../public"],
   framework: {
-    name: '@storybook/nextjs',
+    name: "@storybook/nextjs",
     options: {},
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: "tag",
   },
   typescript: {
-    reactDocgen: 'react-docgen',
+    reactDocgen: "react-docgen",
   },
 };
 export default config;

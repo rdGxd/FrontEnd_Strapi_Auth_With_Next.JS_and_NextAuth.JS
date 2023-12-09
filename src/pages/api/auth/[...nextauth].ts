@@ -38,7 +38,6 @@ export default NextAuth({
             email,
           };
         } catch (error) {
-          console.log(error);
           return null;
         }
       },

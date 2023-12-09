@@ -22,7 +22,7 @@ const preview = {
         },
         {
           name: 'dark',
-          value: theme.colors.primaryColor,
+          value: theme.colors.primary,
         },
       ],
     },
