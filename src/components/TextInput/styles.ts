@@ -1,7 +1,7 @@
 import styled, { css, DefaultTheme } from "styled-components";
 import { TextInputProps } from ".";
 
-const onInputError = (theme: DefaultTheme, errorMessage: string) => css`
+const onInputError = (theme: DefaultTheme, $errorMessage: string) => css`
   border: ${theme.spacings.xxtiny} solid ${theme.colors.warning};
   box-shadow: 0 0 ${theme.spacings.xtiny} 0 ${theme.colors.warning};
   &:focus {
@@ -9,7 +9,7 @@ const onInputError = (theme: DefaultTheme, errorMessage: string) => css`
     box-shadow: 0 0 ${theme.spacings.xtiny} 0 ${theme.colors.warning};
   }
   ${
-    !!errorMessage &&
+    !!$errorMessage &&
     css`
     &:focus + ${Label}, &:not(:placeholder-shown) + ${Label} {
       color: ${theme.colors.white};
@@ -26,8 +26,8 @@ export const Wrapper = styled.div`
   `}
 `;
 
-export const InputWrapper = styled.div<Pick<TextInputProps, "errorMessage">>`
-  ${({ theme, errorMessage }) => css`
+export const InputWrapper = styled.div<Pick<TextInputProps, "$errorMessage">>`
+  ${({ theme, $errorMessage }) => css`
     position: relative;
     > svg {
       position: absolute;
@@ -39,7 +39,7 @@ export const InputWrapper = styled.div<Pick<TextInputProps, "errorMessage">>`
       color: ${theme.colors.gray6};
       z-index: ${theme.layers.layer1};
       ${
-        !!errorMessage &&
+        !!$errorMessage &&
         css`
         color: ${theme.colors.warning};
       `
@@ -48,7 +48,7 @@ export const InputWrapper = styled.div<Pick<TextInputProps, "errorMessage">>`
     *:focus ~ svg {
       color: ${theme.colors.primary};
       ${
-        !!errorMessage &&
+        !!$errorMessage &&
         css`
         color: ${theme.colors.warning};
       `
@@ -61,9 +61,9 @@ export const InputWrapper = styled.div<Pick<TextInputProps, "errorMessage">>`
 `;
 
 export const Input = styled.input<
-  Pick<TextInputProps, "errorMessage" | "as" | "type">
+  Pick<TextInputProps, "$errorMessage" | "as" | "type">
 >`
-  ${({ theme, errorMessage, as }) => css`
+  ${({ theme, $errorMessage, as }) => css`
     border: 1px solid ${theme.colors.gray3};
     width: 100%;
     height: 100%;
@@ -115,12 +115,12 @@ export const Input = styled.input<
       min-height: ${theme.frameSizes.xsmall};
     `
     }
-    ${!!errorMessage && onInputError(theme, errorMessage)}
+    ${!!$errorMessage && onInputError(theme, $errorMessage)}
   `}
 `;
 
-export const Label = styled.label<{ element: string }>`
-  ${({ theme, element }) => css`
+export const Label = styled.label<{ $element: string }>`
+  ${({ theme, $element }) => css`
     display: inline;
     position: absolute;
     top: 50%;
@@ -138,7 +138,7 @@ export const Label = styled.label<{ element: string }>`
     color: ${theme.colors.gray6};
     border-radius: ${theme.spacings.tiny};
     ${
-      element === "textarea" &&
+      $element === "textarea" &&
       css`
       top: ${theme.spacings.large};
       transform: translate(0, -50%);

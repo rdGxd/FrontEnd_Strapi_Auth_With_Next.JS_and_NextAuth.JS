@@ -8,6 +8,7 @@ export type TextInputProps = {
   onInputChange?: (value: string) => void;
   disabled?: boolean;
   errorMessage?: string;
+  $errorMessage?: string;
   value?: string;
   icon?: ReactNode;
   as?: "input" | "textarea";
@@ -38,7 +39,7 @@ export const TextInput = ({
 
   return (
     <Styled.Wrapper>
-      <Styled.InputWrapper errorMessage={errorMessage}>
+      <Styled.InputWrapper $errorMessage={errorMessage}>
         <Styled.Input
           type={type}
           name={name}
@@ -47,12 +48,12 @@ export const TextInput = ({
           ref={inputRef}
           onChange={handleChange}
           placeholder={label}
-          errorMessage={errorMessage}
+          $errorMessage={errorMessage}
           as={as}
           defaultValue={value}
         />
 
-        <Styled.Label htmlFor={name} element={as}>
+        <Styled.Label htmlFor={name} $element={as}>
           {label}
         </Styled.Label>
         {!!icon && as !== "textarea" && icon}

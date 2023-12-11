@@ -1,7 +1,7 @@
 import { Email, Password } from "@styled-icons/material-outlined";
 import { Button } from "components/Button";
 import { TextInput } from "components/TextInput";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import * as Styled from "./styles";
 
 export type FormLoginProps = {
@@ -14,13 +14,9 @@ export const FormLogin = ({ errorMessage, onLogin }: FormLoginProps) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {}, [email, password]);
-
   const handleSubmit = async (event: FormEvent) => {
     setLoading(true);
     event.preventDefault();
-
-    await new Promise((r) => setTimeout(r, 3000));
 
     if (onLogin) {
       await onLogin(email, password);
