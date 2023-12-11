@@ -90,7 +90,6 @@ export default NextAuth({
         name: token.name,
         email: token.email,
       };
-      console.log(session.user);
 
       return { ...session };
     },
