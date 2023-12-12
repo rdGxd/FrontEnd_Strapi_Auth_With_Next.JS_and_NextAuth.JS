@@ -62,12 +62,12 @@ export default NextAuth({
         token.expiration = Math.floor(
           actualDateInSeconds + tokenExpirationInSeconds,
         );
-      } else {
-        if (!token?.expiration) return Promise.resolve({});
+      }
 
-        if (actualDateInSeconds > Number(token.expiration)) {
-          return Promise.resolve({});
-        }
+      if (!token?.expiration) return Promise.resolve({});
+
+      if (actualDateInSeconds > Number(token.expiration)) {
+        return Promise.resolve({});
       }
 
       return Promise.resolve(token);
