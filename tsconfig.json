@@ -16,13 +16,6 @@
     "jsx": "preserve",
     "baseUrl": "src"
   },
-  "typescript": {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    "ignoreBuildErrors": true
-  },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
