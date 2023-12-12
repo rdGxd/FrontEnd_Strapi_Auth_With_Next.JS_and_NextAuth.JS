@@ -19,9 +19,9 @@ export const GQL_QUERY_GET_POSTS = gql`
 export const GQL_QUERY_GET_POST = gql`
   ${GQL_FRAGMENT_POST}
 
-  query GET_POST($id: IDFilterInput) {
+query GET_POST($id: ID!) {
     posts(
-      filters: {id: $id}
+      filters: {id: {eq: $id}}
       ) {
       data {
         id

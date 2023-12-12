@@ -9,16 +9,16 @@ import { useEffect, useState } from "react";
 import { frontEndRedirect } from "utils/front-end-redirect";
 import { serverSideRedirect } from "utils/server-side-redirect";
 
-export type StrapiPost = {
+export type StrapiPosts = {
   id?: string;
-  attributes: {
+  attributes?: {
     title: string;
     content: string;
   };
 };
 
 export type PostsPageProps = {
-  posts?: StrapiPost[];
+  posts?: StrapiPosts[];
 };
 
 export default function PostsPage({ posts = [] }: PostsPageProps) {
@@ -31,6 +31,10 @@ export default function PostsPage({ posts = [] }: PostsPageProps) {
   }, [posts]);
 
   if (!session && status !== "loading") return frontEndRedirect();
+
+  if (typeof window !== "undefined" && status === "loading") return null;
+
+  if (!session) return <p>Você não está autenticado</p>;
 
   const handleDelete = async (id: string) => {
     setDeleting(true);
