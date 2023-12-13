@@ -4,6 +4,8 @@ import { useState } from "react";
 
 export type StrapiPost = {
   id?: string;
+  title?: string;
+  content?: string;
   attributes?: {
     title: string;
     content: string;
@@ -16,10 +18,7 @@ export type FormPostProps = {
 };
 
 export const FormPost = ({ post, onSave }: FormPostProps) => {
-  const {
-    id = "",
-    attributes: { title = "", content = "" },
-  } = post || {};
+  const { id = "", attributes: { title = "", content = "" } = {} } = post || {};
 
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
