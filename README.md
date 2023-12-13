@@ -32,3 +32,8 @@ Você pode usar o comando completo abaixo para rodar o projeto no Windows:
 ```bash
 npm install && npm run dev
 ```
+
+
+# Usuario padrão para ser utilizado:
+email: joao@email.com  
+senha: 123456
