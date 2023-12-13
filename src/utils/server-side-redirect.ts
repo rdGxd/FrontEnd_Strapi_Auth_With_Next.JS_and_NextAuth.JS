@@ -9,7 +9,7 @@ export const serverSideRedirect = (
   return {
     props: {},
     redirect: {
-      destination: `${process.env.NEXT_PUBLIC_LOGIN_URI}/?redirect=${newPath}`,
+      destination: `${process.env.NEXT_PUBLIC_LOGIN_URL}/?redirect=${newPath}`,
       permanent: false,
     },
   };
