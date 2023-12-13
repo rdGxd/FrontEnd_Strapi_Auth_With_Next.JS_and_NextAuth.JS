@@ -4,7 +4,6 @@ import { GQL_MUTATION_DELETE_POST } from "graphql/mutations/post";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { frontEndRedirect } from "utils/front-end-redirect";
 
 export type StrapiPosts = {
   id?: string;
@@ -21,19 +20,13 @@ export type PostsPagePropsTemplate = {
 export default function PostsPageTemplate({
   posts = [],
 }: PostsPagePropsTemplate) {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [statePosts, setStatePosts] = useState(posts);
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     setStatePosts(posts);
   }, [posts]);
-
-  if (!session && status !== "loading") return frontEndRedirect();
-
-  if (typeof window !== "undefined" && status === "loading") return null;
-
-  if (!session) return <p>Você não está autenticado</p>;
 
   const handleDelete = async (id: string) => {
     setDeleting(true);

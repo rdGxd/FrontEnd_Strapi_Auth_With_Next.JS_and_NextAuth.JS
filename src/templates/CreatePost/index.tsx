@@ -5,13 +5,19 @@ import { GQL_MUTATION_CREATE_POST } from "graphql/mutations/post";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
+type responseProps = {
+  createPost: {
+    data: any;
+  };
+};
+
 export function CreatePostTemplate() {
   const router = useRouter();
   const { data: session } = useSession();
 
   const handleSave = async ({ title, content }) => {
     try {
-      const response = await gqlClient.request(
+      const response: responseProps = await gqlClient.request(
         GQL_MUTATION_CREATE_POST,
         {
           title,

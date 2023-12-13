@@ -8,7 +8,7 @@ declare module "next-auth" {
     accessToken?: string | unknown;
     user?: {
       id?: string | unknown;
-      name?: string | unknown;
+      name?: string | undefined;
       email?: string | unknown;
     };
   }

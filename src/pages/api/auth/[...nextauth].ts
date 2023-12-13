@@ -3,6 +3,17 @@ import { GQL_MUTATION_AUTHENTICATE_USER } from "graphql/mutations/auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+type LoginProps = {
+  login: {
+    jwt: string;
+    user: {
+      id: string;
+      username: string;
+      email: string;
+    };
+  };
+};
+
 export default NextAuth({
   secret: process.env.NEXT_AUTH_SECRET,
   session: {
@@ -18,12 +29,12 @@ export default NextAuth({
         // if (!credentials.email || credentials?.password) return null;
 
         try {
-          const { login } = await gqlClient.request(
+          const data: LoginProps = await gqlClient.request(
             GQL_MUTATION_AUTHENTICATE_USER,
-            { email: credentials.email, password: credentials.password },
+            { email: credentials?.email, password: credentials?.password },
           );
 
-          const { jwt, user } = login;
+          const { jwt, user } = data.login;
           const { id, username, email } = user;
 
           if (!jwt || !id || !username || !email) {
@@ -40,7 +51,7 @@ export default NextAuth({
           return null;
         }
       },
-    }),
+    } as any),
   ],
   callbacks: {
     async jwt({ token, user }) {
