@@ -15,7 +15,7 @@ export default NextAuth({
       credentials: {},
 
       async authorize(credentials) {
-        // if (!credentials?.email || credentials?.password) return null;
+        // if (!credentials.email || credentials?.password) return null;
 
         try {
           const { login } = await gqlClient.request(
@@ -83,7 +83,7 @@ export default NextAuth({
         return null;
       }
 
-      session.acessToken = token.jwt;
+      session.accessToken = token.jwt;
 
       session.user = {
         id: token.id,

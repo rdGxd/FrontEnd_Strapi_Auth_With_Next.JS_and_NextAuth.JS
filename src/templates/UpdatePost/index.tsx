@@ -23,13 +23,21 @@ export function UpdatePostTemplate({ posts }: UpdatePostTemplateProps) {
           content,
         },
         {
-          Authorization: `Bearer ${session.acessToken}`,
+          Authorization: `Bearer ${session.accessToken}`,
         },
       );
     } catch (error) {
       alert("Erro ao salvar o post");
     }
   };
+
+  if (!posts[0]) {
+    return (
+      <Wrapper>
+        <p>Post não existe</p>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>

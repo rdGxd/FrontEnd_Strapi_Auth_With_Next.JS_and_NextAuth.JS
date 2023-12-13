@@ -45,7 +45,7 @@ export default function PostsPageTemplate({
           id,
         },
         {
-          Authorization: `Bearer ${session.acessToken}`,
+          Authorization: `Bearer ${session.accessToken}`,
         },
       );
 

@@ -19,7 +19,7 @@ export function CreatePostTemplate() {
           publishedAt: new Date().toISOString(),
         },
         {
-          Authorization: `Bearer ${session.acessToken}`,
+          Authorization: `Bearer ${session.accessToken}`,
         },
       );
 

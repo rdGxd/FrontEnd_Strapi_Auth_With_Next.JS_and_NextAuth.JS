@@ -2,12 +2,11 @@ import { PrivateComponent } from "components/PrivateComponent";
 import { gqlClient } from "graphql/client";
 import { GQL_QUERY_GET_POST } from "graphql/queries/post";
 import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
 import {
   UpdatePostTemplate,
   UpdatePostTemplateProps,
 } from "templates/UpdatePost";
-import { serverSideRedirect } from "utils/server-side-redirect";
+import { privateServerSideProps } from "utils/private-server-side-props";
 
 export default function PostPage({ posts }: UpdatePostTemplateProps) {
   return (
@@ -18,20 +17,15 @@ export default function PostPage({ posts }: UpdatePostTemplateProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const session = await getSession(ctx);
-
-  if (!session) return serverSideRedirect(ctx);
-
-  const { id } = ctx.params;
-
-  try {
+  return await privateServerSideProps(ctx, async (session) => {
+    const { id } = ctx.params;
     const { posts }: UpdatePostTemplateProps = await gqlClient.request(
       GQL_QUERY_GET_POST,
       {
         id,
       },
       {
-        Authorization: `Bearer ${session.acessToken}`,
+        Authorization: `Bearer ${session.accessToken}`,
       },
     );
     return {
@@ -40,7 +34,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         posts: posts.data,
       },
     };
-  } catch (error) {
-    return serverSideRedirect(ctx);
-  }
+  });
 };
