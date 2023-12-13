@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <NextAuthProvider session={pageProps.session}>
       <ThemeProvider theme={theme}>
         <NextNProgress color={theme.colors.info} height={10} />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
         <GlobalStyles />
       </ThemeProvider>
     </NextAuthProvider>
