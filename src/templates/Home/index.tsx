@@ -6,7 +6,9 @@ export const HomeTemplate = () => {
 
   return (
     <Wrapper>
-      <h1>Olá {session?.user.name || "ninguém"}</h1>
+      <h1>
+        {session ? `Olá ${session.user.name}` : "Nenhum usuário conectado"}
+      </h1>
     </Wrapper>
   );
 };
