@@ -1,3 +1,4 @@
+import { Button } from "components/Button";
 import { FormLogin } from "components/FormLogin";
 import { Wrapper } from "components/Wrapper";
 import { signIn } from "next-auth/react";
@@ -27,9 +28,15 @@ export default function LoginPage() {
     router.push(redirect as string);
   };
 
+  const handleLoginGoogle = async () => {
+    await signIn("google", { callbackUrl: "/" });
+  };
+
   return (
     <Wrapper>
       <FormLogin onLogin={handleLogin} errorMessage={error} />
+      <br />
+      <Button onClick={handleLoginGoogle}>Login com o google</Button>
     </Wrapper>
   );
 }

@@ -52,7 +52,7 @@ export default function PostsPageTemplate({
 
   return (
     <Wrapper>
-      <h1>Olá {session?.user?.name || "ninguém"}: POSTS</h1>
+      <h1>POSTS</h1>
 
       {statePosts.map((p) => (
         <p key={`post-${p.id}`}>
