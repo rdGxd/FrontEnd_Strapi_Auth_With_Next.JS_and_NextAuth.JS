@@ -34,24 +34,15 @@ export default NextAuth({
             { email: credentials?.email, password: credentials?.password },
           );
 
-          const { jwt, user } = data.login;
-          const { id, username, email } = user;
-
-          if (!jwt || !id || !username || !email) {
-            return null;
-          }
-
-          return {
-            jwt,
-            id,
-            name: username,
-            email,
-          };
+          return data;
         } catch (error) {
           return null;
         }
       },
     } as any),
+
+    // GOOGLE
+    // GoogleProvider({}),
   ],
   callbacks: {
     async jwt({ token, user }) {
