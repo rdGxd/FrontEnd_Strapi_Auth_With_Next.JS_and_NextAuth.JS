@@ -10,6 +10,8 @@ export default function LoginPage() {
   const [error, setError] = useState("");
 
   const handleLogin = async (email: string, password: string) => {
+    const redirect = router.query?.redirect || "/";
+
     if (!email || !password) {
       return setError("Preencha os campos corretamente");
     }
@@ -18,18 +20,20 @@ export default function LoginPage() {
       email,
       password,
       redirect: false,
+      callbackUrl: redirect as string,
     });
 
     if (!response.ok) {
       return setError("Usuário ou senha inválidos");
     }
 
-    const redirect = router.query?.redirect || "/";
-    router.push(redirect as string);
+    window.location.href = response.url;
   };
 
   const handleLoginGoogle = async () => {
-    await signIn("google", { callbackUrl: "/" });
+    const redirect = router.query?.redirect || "/";
+
+    await signIn("google", { callbackUrl: redirect as string });
   };
 
   return (

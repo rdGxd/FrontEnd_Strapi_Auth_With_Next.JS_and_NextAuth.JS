@@ -20,12 +20,12 @@ export default NextAuth({
       credentials: {},
 
       async authorize(credentials) {
-        // if (!credentials.email || credentials?.password) return null;
+        if (!credentials.email || !credentials.password) return null;
 
         try {
           const data: StrapiLoginData = await gqlClient.request(
             GQL_MUTATION_AUTHENTICATE_USER,
-            { email: credentials?.email, password: credentials?.password },
+            { email: credentials.email, password: credentials.password },
           );
 
           return data;
@@ -88,6 +88,12 @@ export default NextAuth({
       };
 
       return { ...session };
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith(baseUrl)) return `${url}`;
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+
+      return baseUrl;
     },
   },
 });
